@@ -1,0 +1,48 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: rgb(25, 25, 25);
+    color: white;
+    text-shadow: 1px 1px 2px white;
+} 
+
+header {
+    margin: 0 auto 30px auto;
+    padding: 30px;
+} 
+
+
+
+header h1 {
+    font-size: 3rem;
+    padding-right: 23rem;
+    text-align: center;
+    
+}
+
+button:not(.trackBtn, .createBtn){
+    margin: 1rem 1rem 0 0;
+    border: 0;
+    border-radius: 30px;
+    padding: .9rem 7rem;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color:#002853;
+    text-shadow: 3px 3px 5px black;
+    color: rgb(255, 255, 255);
+}
+
+button:hover {
+    background-color: #003165;
+    cursor: pointer;
+    
+}
+
+footer {
+    text-align: center;
+    font-weight: bold;
+}
