@@ -9,8 +9,8 @@ import Playlists from "./components/Playlist";
 import NowPlaying from "./components/NowPlaying";
 
 //Data for retreaving a Token from spotify
-const clientId = "2172f29e4d594af08add088919dfab8f"; // your clientId
-const redirectUrl = "localhost:3000"; // your redirect URL - must be localhost URL and/or HTTPS
+const clientId = "cebd3454f774458485dc54ea9ccc2a93"; // your clientId
+const redirectUrl = "https://m4tryxxx.github.io/jammming/"; // your redirect URL - must be localhost URL and/or HTTPS
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
