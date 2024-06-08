@@ -9,8 +9,8 @@ import Playlists from "./components/Playlist";
 import NowPlaying from "./components/NowPlaying";
 
 //Data for retreaving a Token from spotify
-const clientId = "2172f29e4d594af08add088919dfab8f"; // your clientId
-const redirectUrl = "localhost:3000"; // your redirect URL - must be localhost URL and/or HTTPS
+const clientId = "cebd3454f774458485dc54ea9ccc2a93"; // your clientId
+const redirectUrl = "http://localhost:3000"; // your redirect URL - must be localhost URL and/or HTTPS
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -64,13 +64,13 @@ if (code) {
 
 //Adding user profile information on homepage on login
 let userData;
-
+console.log(code, currentToken)
 //console.log(userData);
 
 // Otherwise we're not logged in, so render the login template
 if (!currentToken.access_token) {
 }
-
+//console.log(code);
 async function redirectToSpotifyAuthorize() {
   const possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -79,7 +79,7 @@ async function redirectToSpotifyAuthorize() {
     (acc, x) => acc + possible[x % possible.length],
     ""
   );
-
+console.log(currentToken.expires_in);
   const code_verifier = randomString;
   const data = new TextEncoder().encode(code_verifier);
   const hashed = await crypto.subtle.digest("SHA-256", data);
@@ -222,24 +222,30 @@ let nowPlaying;
 
 async function updateNow() {
   nowPlaying = await currentlyTrack();
+  console.log(nowPlaying);
   //console.log(nowPlaying);
 }
+console.log(nowPlaying);
 //setInterval(updateNow, 15000);
 
 //console.log(nowPlaying);
 
 let playList;
-if (currentToken.access_token && currentToken.expires > Date()) {
+
+if (currentToken.access_token) {
   userData = await getUserData();
   playList = await getUserPlaylists();
   nowPlaying = await currentlyTrack();
   //console.log(playList);
   setInterval(updateNow, 3000);
 }
+console.log(nowPlaying);
 
 //Main app
 
 function App() {
+
+
   const [mura, setMura] = useState(0);
 
   useEffect(() => {
@@ -466,6 +472,7 @@ function App() {
     if (trackObj) {
       if (trackObj.tracks.next !== null) {
         getNextTrackResult(trackObj.tracks.next);
+        console.log(trackObj)
         setAlbumObj(false);
         setPlaylistContent(false);
         //   if(prevPage.length > 1)
@@ -662,7 +669,7 @@ function App() {
 
   //console.log(currentToken.access_token);
 
-  if (code || (currentToken.access_token && currentToken.expires > Date())) {
+  if (code !== null || currentToken.access_token) {
     // Remove code from URL so we can refresh correctly.
     const url = new URL(window.location.href);
     url.searchParams.delete("code");
