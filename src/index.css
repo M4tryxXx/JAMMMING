@@ -352,7 +352,7 @@ img {
 }
  .progress {
   margin: 20px auto;
-  width: 300px;
+  width: 100%;
   height: 10px;
   background: #7c767600;
   border: solid .05mm rgba(0, 240, 232, 0.832);
@@ -362,7 +362,6 @@ img {
 #login-button {
 cursor: pointer;
 }
-
 .m4-green {
   height: 100%;
   background: rgb(0, 255, 0);
