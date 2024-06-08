@@ -1,7 +1,3 @@
-html {
-  font-size: 16px;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -9,37 +5,41 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+html {
+  font-size: 16px;
+}
+
+body {
   background-color: rgb(25, 25, 25);
   color: white;
   text-shadow: 1px 1px 2px white;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+} 
 
 header {
   margin: 0 auto 30px auto;
   padding: 30px;
-}
+} 
+
+
 
 header h1 {
   font-size: 3rem;
   padding-right: 23rem;
   text-align: center;
+  
 }
 
-button:not(.trackBtn, .createBtn) {
+button:not(.trackBtn, .createBtn){
   margin: 1rem 1rem 0 0;
   border: 0;
   border-radius: 30px;
-  padding: 0.9rem 7rem;
+  padding: .9rem 7rem;
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: #002853;
+  background-color:#002853;
   text-shadow: 3px 3px 5px black;
   color: rgb(255, 255, 255);
 }
@@ -47,6 +47,17 @@ button:not(.trackBtn, .createBtn) {
 button:hover {
   background-color: #003165;
   cursor: pointer;
+  
+}
+
+footer {
+  text-align: center;
+  font-weight: bold;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 #profileDetails {
@@ -339,8 +350,21 @@ img {
   margin: auto;
   text-align: center;
 }
+ .progress {
+  margin: 20px auto;
+  width: 300px;
+  height: 10px;
+  background: #7c767600;
+  border: solid .05mm rgba(0, 240, 232, 0.832);
+  border-radius: 10px;
+  box-shadow: -0.11mm 3px 10px rgb(91, 91, 91);
+ }
+#login-button {
+cursor: pointer;
+}
 
-footer {
-  text-align: center;
-  font-weight: bold;
+.m4-green {
+  height: 100%;
+  background: rgb(0, 255, 0);
+  border-radius: 10px;
 }

@@ -1,16 +1,16 @@
 //Importing all components we need
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import SearchBar from "./components/SearchBar";
-import LogIn from "./components/LogIn";
-import LoggedIn from "./components/LoggedIn";
-import SearchResult from "./components/SearchResult";
-import Playlists from "./components/Playlist";
-import NowPlaying from "./components/NowPlaying";
+import SearchBar from "./SearchBar";
+import LogIn from "./LogIn";
+import LoggedIn from "./LoggedIn";
+import SearchResult from "./SearchResult";
+import Playlists from "./Playlist";
+import NowPlaying from "./NowPlaying";
 
 //Data for retreaving a Token from spotify
 const clientId = "cebd3454f774458485dc54ea9ccc2a93"; // your clientId
-const redirectUrl = "https://m4tryxxx.github.io/jammming/"; // your redirect URL - must be localhost URL and/or HTTPS
+const redirectUrl = "http://localhost:3000"; // your redirect URL - must be localhost URL and/or HTTPS
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -64,13 +64,13 @@ if (code) {
 
 //Adding user profile information on homepage on login
 let userData;
-console.log(code, currentToken)
+
 //console.log(userData);
 
 // Otherwise we're not logged in, so render the login template
 if (!currentToken.access_token) {
 }
-//console.log(code);
+
 async function redirectToSpotifyAuthorize() {
   const possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -79,7 +79,7 @@ async function redirectToSpotifyAuthorize() {
     (acc, x) => acc + possible[x % possible.length],
     ""
   );
-console.log(currentToken.expires_in);
+
   const code_verifier = randomString;
   const data = new TextEncoder().encode(code_verifier);
   const hashed = await crypto.subtle.digest("SHA-256", data);
@@ -219,33 +219,49 @@ async function currentlyTrack() {
 let nowPlaying;
 
 //console.log(nowPlaying.item);
+currentlyTrack().then(
+  function (resolved) {
+    nowPlaying = resolved;
+  },
+  function (error) {
+    nowPlaying = "Nothing Playing . . .";
+  }
+);
+
+
 
 async function updateNow() {
-  nowPlaying = await currentlyTrack();
-  console.log(nowPlaying);
+  currentlyTrack().then(
+    function (resolved) {
+      nowPlaying = resolved;
+    },
+    function (error) {
+      nowPlaying = "Nothing Playing . . .";
+    }
+  );
   //console.log(nowPlaying);
 }
-console.log(nowPlaying);
-//setInterval(updateNow, 15000);
-
-//console.log(nowPlaying);
 
 let playList;
-
-if (currentToken.access_token) {
+if (currentToken.access_token && currentToken.expires > Date()) {
   userData = await getUserData();
   playList = await getUserPlaylists();
-  nowPlaying = await currentlyTrack();
+  currentlyTrack().then(
+    function (resolved) {
+      nowPlaying = resolved;
+    },
+    function (error) {
+      nowPlaying = "Nothing Playing . . .";
+    }
+  );
   //console.log(playList);
   setInterval(updateNow, 3000);
 }
-console.log(nowPlaying);
 
 //Main app
 
 function App() {
-
-
+  // eslint-disable-next-line
   const [mura, setMura] = useState(0);
 
   useEffect(() => {
@@ -327,7 +343,7 @@ function App() {
       searchParameters
     );
     setTrackObj(await tracks.json());
-    console.log(trackObj);
+    //console.log(trackObj);
   }
 
   useEffect(() => {
@@ -342,7 +358,7 @@ function App() {
         Authorization: "Bearer " + currentToken.access_token,
       },
     };
-    console.log(next);
+    //console.log(next);
     const tracks = await fetch(next, searchParameters);
     setTrackObj(await tracks.json());
     //console.log(trackObj);
@@ -356,7 +372,7 @@ function App() {
         Authorization: "Bearer " + currentToken.access_token,
       },
     };
-    console.log(next);
+    //console.log(next);
     const tracks = await fetch(next, searchParameters);
     setAlbumObj(await tracks.json());
     //console.log(trackObj);
@@ -374,7 +390,7 @@ function App() {
     //console.log(next);
     const tracks = await fetch(next, searchParameters);
     setPersonalTracks(await tracks.json());
-    console.log(personalTracks);
+    //console.log(personalTracks);
   }
 
   const [updatePlaylist, setUpdatePlaylist] = useState(playList);
@@ -407,9 +423,10 @@ function App() {
 
   //console.log("Control: ",test);
   async function handleNewPlaylist() {
-    console.log(newPlName);
+    //console.log(newPlName);
     if (newPlName !== "") {
       createPlaylist();
+      playList = await getUserPlaylists();
     } else {
       alert("Please enter a valid name!");
     }
@@ -434,11 +451,6 @@ function App() {
 
   function handleSearch(e) {
     setSearchInput(e.target.value);
-  }
-
-  const [playing, setPlaying] = useState("");
-  async function handleNowPlaying() {
-    setPlaying(await currentlyTrack());
   }
 
   function handleSearchTrackSubmit() {
@@ -472,7 +484,6 @@ function App() {
     if (trackObj) {
       if (trackObj.tracks.next !== null) {
         getNextTrackResult(trackObj.tracks.next);
-        console.log(trackObj)
         setAlbumObj(false);
         setPlaylistContent(false);
         //   if(prevPage.length > 1)
@@ -523,7 +534,7 @@ function App() {
   function handlePrevLiked() {
     if (personalTracks.previous !== null) {
       getNextLiked(personalTracks.previous);
-      console.log(personalTracks);
+      //console.log(personalTracks);
     }
   }
 
@@ -539,10 +550,10 @@ function App() {
       id: e.target.id,
       snapshot_id: e.target.className,
     });
-    console.log(playlistContent);
-    console.log(
-      "The snapshoot of playlist should be: " + selectedPlaylist.snapshot_id
-    );
+    //console.log(playlistContent);
+    //console.log(
+    // "The snapshoot of playlist should be: " + selectedPlaylist.snapshot_id
+    //);
     //console.log(selectedPlaylist.snapshot_id);
   }
   let duplicateCheck = [];
@@ -555,6 +566,7 @@ function App() {
       e.target.id !== undefined &&
       e.target.id !== ""
     ) {
+      console.log("This is Target propreties", e.target);
       let responseAddToPlaylist;
       const sendParameters = {
         method: "POST",
@@ -564,7 +576,7 @@ function App() {
         },
         body: JSON.stringify({ uris: [e.target.id], position: 0 }),
       };
-      const send = await fetch(
+      await fetch(
         "https://api.spotify.com/v1/playlists/" +
           selectedPlaylist.id +
           "/tracks",
@@ -586,7 +598,6 @@ function App() {
     }
   }
 
-  let remUri;
   async function handleRemFromPlaylist(e) {
     console.log(e.target.id);
     if (
@@ -595,10 +606,7 @@ function App() {
       e.target.id !== ""
     ) {
       //console.log(selectedPlaylist);
-      console.log("Snapshot of playlist is: " + selectedPlaylist.id);
-
-      remUri = e.target.id;
-      //console.log(remUri);
+      //console.log("Snapshot of playlist is: " + selectedPlaylist.id);
 
       const sendParameters = {
         method: "DELETE",
@@ -669,7 +677,7 @@ function App() {
 
   //console.log(currentToken.access_token);
 
-  if (code !== null || currentToken.access_token) {
+  if (code || (currentToken.access_token && currentToken.expires > Date())) {
     // Remove code from URL so we can refresh correctly.
     const url = new URL(window.location.href);
     url.searchParams.delete("code");
@@ -688,7 +696,7 @@ function App() {
             userReturn={userData}
           />
           <NowPlaying
-            currently={nowPlaying.item}
+            currently={nowPlaying}
             active={nowPlaying}
             update={updateNow}
           />

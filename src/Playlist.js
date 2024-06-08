@@ -30,16 +30,6 @@ function Playlists(props) {
     );
   }
 
-  // if(props.activePlaylist.name !== '') {
-  //     setPlaylistInfo(
-  //         <div>
-  //         <p>Selected Playlist: <br/>{props.activePlaylist.name}</p>
-  //         <p>Change playlist name!</p>
-  //         <input type='text' id='changeName' style={{width: "90%"}} />
-  //         <button id='submitName' name='submitName'>Change Name</button>
-  //         </div>
-  //     )
-  // }
   let playlistArr = [];
   for (let i = 0; i < playlists.length; i++) {
     let image;
