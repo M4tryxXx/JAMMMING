@@ -738,6 +738,7 @@ function App() {
             liked={personalTracks}
             handleNextL={handleNextLiked}
             handlePrevL={handlePrevLiked}
+            activePl={selectedPlaylist}
           />
         </div>
       </>
