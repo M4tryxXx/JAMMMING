@@ -15,7 +15,7 @@ export default function NowPlaying(props) {
   }, [props.active]);
   
   let artists = [];
-  const [device, setDevice] = useState([]);
+let device = [];
   
   if(props.active !== 'Nothing Playing . . .' && playing.item !== undefined && playing !== undefined) { 
     
@@ -32,18 +32,14 @@ export default function NowPlaying(props) {
     //console.log('Tota duration: ' + props.active.item.duration_ms);
     //console.log(divPercent);
     for(let i = 0; i < props.currentDev.devices.length; i++) {
-      let temp = [];
       if (props.currentDev.devices[i].is_active === true) {
-        temp.push(props.currentDev.devices[i]);
-        setDevice(temp);
+        device.push(props.currentDev.devices[i]);
       }
-      console.log(temp);
     }
-    console.log(device);
     return (
       <div className="nowPlaying">
         <div className="nowContainer">
-          <h3>Now Playing on ...</h3>
+          <h3>Now Playing on: <span style={{color: 'lime'}}>{device[0].name}</span>...</h3>
           <div className="albumImgDiv">
             <img
               style={{ height: "180px", width: "180px" }}
