@@ -33,7 +33,7 @@ export default function NowPlaying(props) {
     //console.log(divPercent);
     for(let i = 0; i < props.currentDev.devices.length; i++) {
       let temp = [];
-      if (props.currentDev.devices[i].is_active) {
+      if (props.currentDev.devices[i].is_active === true) {
         temp.push(props.currentDev.devices[i]);
         setDevice(temp);
       }
