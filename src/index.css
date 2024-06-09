@@ -310,8 +310,6 @@ img {
   padding-bottom: 40px;
 }
 #top {
-  position: sticky;
-  top: 0px;
   background-color: rgb(25, 25, 25);
 }
 
