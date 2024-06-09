@@ -4,7 +4,7 @@ function Playlists(props) {
   const [playlists, setPlaylists] = useState(props.getPlaylists);
   console.log(playlists);
   // const[playlistInfo, setPlaylistInfo] = useState(<p>Please select a playlist!</p>)
-  if(playlists.items.length > 0) { 
+  if(playlists.items.length > 0 || playlists === undefined) { 
   let playlistInfo = <p>Please select a playlist <br/> or <br/>Create a new playlist</p>;
   if (props.activePlaylist.name !== "") {
     playlistInfo = (
