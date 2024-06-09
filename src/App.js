@@ -172,7 +172,7 @@ async function getUserPlaylists() {
     .then((response) => response.json())
     //.then(data => console.log(data))
     .then((data) => {
-      return data});
+      return data.items});
     
 
   return playlistsObj;
