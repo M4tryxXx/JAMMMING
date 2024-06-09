@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 
 function Playlists(props) {
   const [playlists, setPlaylists] = useState(props.getPlaylists);
-  console.log(playlists);
+  //console.log(playlists[0]);
   // const[playlistInfo, setPlaylistInfo] = useState(<p>Please select a playlist!</p>)
-  if(playlists.items.length > 0 || playlists === undefined) { 
   let playlistInfo = <p>Please select a playlist <br/> or <br/>Create a new playlist</p>;
   if (props.activePlaylist.name !== "") {
     playlistInfo = (
@@ -74,17 +73,6 @@ function Playlists(props) {
         <button className="createBtn" id='createPlaylist' onClick={props.handleCreatePlaylist}>Create Playlist</button>
     </div>
   );
-} else {
-  return (
-    <div className="playlistDiv">
-      <h3>No Playlists</h3>
-      <div>
-        <p>Nothing to show!</p>
-      </div>
-       
-    </div>
-  );
-}
 }
 
 export default Playlists;
