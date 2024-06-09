@@ -9,7 +9,7 @@ import Playlists from "./Playlist";
 import NowPlaying from "./NowPlaying";
 
 //Data for retreaving a Token from spotify
-const clientId = "cebd3454f774458485dc54ea9ccc2a93"; // your clientId
+const clientId ="01b7b53919a14c7787b6fcfc202587da"; // your clientId
 //const redirectUrl = "http://localhost:3000"; // your redirect URL - must be localhost URL and/or HTTPS
 const redirectUrl = "https://m4tryxxx.github.io/jammming/"; // your redirect URL - must be localhost URL and/or HTTPS
 
