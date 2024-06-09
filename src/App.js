@@ -249,7 +249,14 @@ currentlyTrack().then(
   }
 );
 
-
+activeDevice().then(
+  function (resolved) {
+    activeDev = resolved;
+  },
+  function (error) {
+    activeDev = "No device active";
+  }
+);
 
 
 
