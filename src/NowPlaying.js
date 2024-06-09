@@ -43,7 +43,7 @@ export default function NowPlaying(props) {
     return (
       <div className="nowPlaying">
         <div className="nowContainer">
-          <h3>Now Playing on {device[0].name}...</h3>
+          <h3>Now Playing on ...</h3>
           <div className="albumImgDiv">
             <img
               style={{ height: "180px", width: "180px" }}
