@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function Playlists(props) {
   const [playlists, setPlaylists] = useState(props.getPlaylists);
-  //console.log(playlists[0]);
+  console.log(playlists);
   // const[playlistInfo, setPlaylistInfo] = useState(<p>Please select a playlist!</p>)
   let playlistInfo = <p>Please select a playlist <br/> or <br/>Create a new playlist</p>;
   if (props.activePlaylist.name !== "") {
