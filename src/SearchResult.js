@@ -283,7 +283,7 @@ function SearchResult(props) {
 
     return (
       <div id="resultedTrackList">
-        <h4>Selected playlist: {props.activePl.name}</h4>
+        <h4>Selected playlist: <br />{props.activePl.name}</h4>
         <h4>Showing: {receivedTracksFromPlaylist.length} results/page!</h4>
         <hr />
         <br />
