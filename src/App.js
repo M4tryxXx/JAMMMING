@@ -178,7 +178,7 @@ async function getUserPlaylists() {
   return playlistsObj;
 }
 
-console.log(getUserPlaylists());
+//console.log(getUserPlaylists());
 
 async function getUserTracks() {
   const searchParameters = {
