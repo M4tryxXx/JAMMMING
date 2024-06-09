@@ -16,7 +16,7 @@ const redirectUrl = "https://m4tryxxx.github.io/jammming/"; // your redirect URL
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const scope =
-  "user-read-private user-read-email playlist-modify-public playlist-modify-private user-read-playback-state user-modify-playback-state user-library-read";
+  "user-read-private user-read-email playlist-modify-public playlist-modify-private user-read-playback-state user-modify-playback-state user-library-read playlist-read-private";
 
 // Data structure that manages the current active token, caching it in localStorage
 const currentToken = {
@@ -169,11 +169,11 @@ async function getUserPlaylists() {
     "https://api.spotify.com/v1/me/playlists",
     searchParameters
   )
-    .then((response) => {return response})
+    .then((response) => response.json())
     //.then(data => console.log(data))
-    // .then((data) => {
-    //   return data;
-    // });
+    .then((data) => {
+      return data.items;
+    });
 
   return playlistsObj;
 }
