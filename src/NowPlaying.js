@@ -32,8 +32,10 @@ export default function NowPlaying(props) {
     //console.log('Tota duration: ' + props.active.item.duration_ms);
     //console.log(divPercent);
     for(let i = 0; i < props.currentDev.devices.length; i++) {
+      let temp = [];
       if (props.currentDev.devices[i].is_active) {
-        setDevice(device.push(props.currentDev.devices[i]));
+        temp.push(props.currentDev.devices[i]);
+        setDevice(temp);
       }
     }
     console.log(props.currentDev);
