@@ -278,7 +278,7 @@ header h1 {
   box-shadow: -0.11mm 3px 10px rgb(91, 91, 91);
 }
 .track {
-  margin-left: 10px;
+  margin-left: 20px;
   grid-column: 2 / 7;
 }
 .trackContainer:hover {
