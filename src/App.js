@@ -169,10 +169,10 @@ async function getUserPlaylists() {
     "https://api.spotify.com/v1/me/playlists",
     searchParameters
   )
-    .then((response) => response.json())
+    .then((response) => {return response.json()})
     //.then(data => console.log(data))
-    .then((data) => {
-      return data;
+    // .then((data) => {
+    //   return data;
     });
 
   return playlistsObj;
