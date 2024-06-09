@@ -286,8 +286,8 @@ header h1 {
 }
 img {
   box-shadow: -0.11mm 3px 10px rgb(91, 91, 91);
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
 }
 .albumImg {
   height: 100px;
