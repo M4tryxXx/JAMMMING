@@ -15,7 +15,7 @@ export default function NowPlaying(props) {
   }, [props.active]);
   
   let artists = [];
-  const[device, setDevice] = useState([]);
+  const [device, setDevice] = useState([]);
   
   if(props.active !== 'Nothing Playing . . .' && playing.item !== undefined && playing !== undefined) { 
     
@@ -37,6 +37,7 @@ export default function NowPlaying(props) {
         temp.push(props.currentDev.devices[i]);
         setDevice(temp);
       }
+      console.log(temp);
     }
     console.log(device);
     return (
