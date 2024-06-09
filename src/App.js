@@ -247,6 +247,7 @@ let playList;
 if (currentToken.access_token && currentToken.expires > Date()) {
   userData = await getUserData();
   playList = await getUserPlaylists();
+  console.log(playList);
   currentlyTrack().then(
     function (resolved) {
       nowPlaying = resolved;
