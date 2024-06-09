@@ -249,14 +249,7 @@ currentlyTrack().then(
   }
 );
 
-activeDevice().then(
-  function (resolved) {
-    activeDev = resolved;
-  },
-  function (error) {
-    activeDev = "No device active";
-  }
-);
+
 
 
 
@@ -269,6 +262,15 @@ async function updateNow() {
       nowPlaying = "Nothing Playing . . .";
     }
   );
+
+  activeDevice().then(
+    function (resolved) {
+      activeDev = resolved;
+    },
+    function (error) {
+      activeDev = "No device active";
+    }
+  );
   //console.log(nowPlaying);
 }
 
@@ -276,7 +278,7 @@ let playList;
 if (currentToken.access_token && currentToken.expires > Date()) {
   userData = await getUserData();
   playList = await getUserPlaylists();
-  console.log(playList);
+  //console.log(playList);
   currentlyTrack().then(
     function (resolved) {
       nowPlaying = resolved;
