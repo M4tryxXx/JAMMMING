@@ -38,7 +38,7 @@ export default function NowPlaying(props) {
         setDevice(temp);
       }
     }
-    console.log(props.currentDev);
+    console.log(device);
     return (
       <div className="nowPlaying">
         <div className="nowContainer">
