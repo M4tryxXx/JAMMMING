@@ -30,7 +30,7 @@ export default function NowPlaying(props) {
     }
     //console.log('Tota duration: ' + props.active.item.duration_ms);
     //console.log(divPercent);
-    console.log(props.active);
+    console.log(props.currentDev);
     return (
       <div className="nowPlaying">
         <div className="nowContainer">

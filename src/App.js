@@ -219,6 +219,24 @@ async function currentlyTrack() {
   });
   return pause;
 }
+
+async function activeDevice() {
+  const fetchData = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + currentToken.access_token,
+    },
+  };
+  const device = await fetch(
+    "https://api.spotify.com/v1/me/player/devices",
+    fetchData
+  ).then((response) => {
+    return response.json();
+  });
+  return device;
+}
+
+let activeDev;
 let nowPlaying;
 
 //console.log(nowPlaying.item);
@@ -228,6 +246,15 @@ currentlyTrack().then(
   },
   function (error) {
     nowPlaying = "Nothing Playing . . .";
+  }
+);
+
+activeDevice().then(
+  function (resolved) {
+    activeDev = resolved;
+  },
+  function (error) {
+    activeDev = "No device active";
   }
 );
 
@@ -700,7 +727,7 @@ function App() {
             userReturn={userData}
           />
           <NowPlaying
-            currently={nowPlaying}
+            currentDev={activeDev}
             active={nowPlaying}
             update={updateNow}
           />
