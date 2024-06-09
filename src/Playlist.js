@@ -7,7 +7,7 @@ function Playlists(props) {
   let playlistInfo = <p>Please select a playlist <br/> or <br/>Create a new playlist</p>;
   if (props.activePlaylist.name !== "") {
     playlistInfo = (
-      <div>
+      <> 
         <p>
           Selected Playlist: <br />
           {props.activePlaylist.name}
@@ -18,6 +18,7 @@ function Playlists(props) {
           id="changeName"
           className="textInput"
           onChange={props.handleNameChange}
+          placeholder="Enter a new name ..."
         />
         <button
           id="submitName"
@@ -26,7 +27,7 @@ function Playlists(props) {
         >
           Change Name
         </button>
-      </div>
+    </>
     );
   }
 
@@ -63,15 +64,13 @@ function Playlists(props) {
   }
   return (
     <div className="playlistDiv">
-      <h2>{playlists[0].owner.display_name} Playlists</h2>
+      <h3>{playlists[0].owner.display_name} Playlists</h3>
       <div>{playlistArr}</div>
       {playlistInfo}
-      <div className="newPlaylistContainer">
         <h4>Create a playlist</h4>
         <input type='text' id='newPlaylistName' onChange={props.handleChange} className="textInput" placeholder="New playlist name .."/>
         <br/>
-        <button className="createBtn" id='createPlaylist' onClick={props.handleCreatePlaylist}>Create</button>
-      </div>
+        <button className="createBtn" id='createPlaylist' onClick={props.handleCreatePlaylist}>Create Playlist</button>
     </div>
   );
 }

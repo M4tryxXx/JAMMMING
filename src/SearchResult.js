@@ -77,7 +77,7 @@ function SearchResult(props) {
             <div className="albumImgDiv">
               <img
                 className="albumImg"
-                src={receivedTracks.tracks.items[i].album.images[2].url}
+                src={receivedTracks.tracks.items[i].album.images[0].url}
                 alt={"Image of " + receivedTracks.tracks.items[i].name}
               />
             </div>
@@ -121,7 +121,7 @@ function SearchResult(props) {
             <div className="albumImgDiv">
               <img
                 className="albumImg"
-                src={receivedTracks.tracks.items[i].album.images[2].url}
+                src={receivedTracks.tracks.items[i].album.images[0].url}
                 alt={"Image of " + receivedTracks.tracks.items[i].name}
               />
             </div>
@@ -188,7 +188,7 @@ function SearchResult(props) {
       albumList.push(
         <div key={receivedAlbums.items[i].id} className="trackContainer">
           <img
-            src={receivedAlbums.items[i].images[2].url}
+            src={receivedAlbums.items[i].images[0].url}
             alt={"Album art of " + receivedAlbums.items[i].name}
           />
           <p className="track" id={receivedAlbums.items[i].id}>
@@ -228,12 +228,12 @@ function SearchResult(props) {
 
       let image;
       if (
-        receivedTracksFromPlaylist[i].track.album.images[2].url !== null ||
-        receivedTracksFromPlaylist[i].track.album.images[2].url !== undefined
+        receivedTracksFromPlaylist[i].track.album.images[0].url !== null ||
+        receivedTracksFromPlaylist[i].track.album.images[0].url !== undefined
       ) {
-        image = receivedTracksFromPlaylist[i].track.album.images[2].url;
+        image = receivedTracksFromPlaylist[i].track.album.images[0].url;
       } else {
-        image = "./images/no-image.jpg";
+        image = "images/no-image.jpg";
       }
       for (
         let j = 0;
@@ -301,7 +301,7 @@ function SearchResult(props) {
       likedArray.push(
         <div key={likedTracks.items[i].track.id} className="trackContainer">
           <img
-            src={likedTracks.items[i].track.album.images[2].url}
+            src={likedTracks.items[i].track.album.images[0].url}
             alt={"Album art of " + likedTracks.items[i].track.name}
           />
           <p className="track" id={likedTracks.items[i].track.id}>
