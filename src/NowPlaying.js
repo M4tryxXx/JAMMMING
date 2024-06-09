@@ -30,10 +30,11 @@ export default function NowPlaying(props) {
     }
     //console.log('Tota duration: ' + props.active.item.duration_ms);
     //console.log(divPercent);
+    console.log(props.active.device);
     return (
       <div className="nowPlaying">
         <div className="nowContainer">
-          <h3>Now Playing on {props.active.device.name} ...</h3>
+          <h3>Now Playing on ...</h3>
           <div className="albumImgDiv">
             <img
               style={{ height: "180px", width: "180px" }}
